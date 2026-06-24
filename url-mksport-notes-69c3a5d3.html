@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>再次回到 mk体育 · 简单的收藏与持续关注</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', sans-serif;
+            background-color: #f6f7f9;
+            color: #1e293b;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ---------- 深色头图 ---------- */
+        .hero {
+            background: linear-gradient(145deg, #0b1824 0%, #142b3a 100%);
+            padding: 80px 20px 60px;
+            text-align: center;
+            color: #e8edf3;
+            border-bottom-left-radius: 36px;
+            border-bottom-right-radius: 36px;
+            margin: 0 -20px 60px;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+        }
+
+        .hero h1 {
+            font-size: 2.3rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin: 0 0 12px;
+            line-height: 1.2;
+            color: #f0f5fe;
+        }
+
+        .hero .subhead {
+            font-size: 1.05rem;
+            color: #b0ccdd;
+            max-width: 560px;
+            margin: 0 auto;
+            font-weight: 350;
+            border-top: 1px solid #2d4b5f;
+            padding-top: 18px;
+        }
+
+        .hero .subhead span {
+            display: inline-block;
+            background: #1f3c4d;
+            padding: 2px 14px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            color: #c7dbe9;
+            margin-top: 10px;
+        }
+
+        /* ---------- 正文区域 ---------- */
+        .post {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 40px 32px 44px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02), 0 1px 4px rgba(0,20,30,0.04);
+            margin-bottom: 48px;
+        }
+
+        .post .intro {
+            font-size: 1.04rem;
+            color: #2c3e4f;
+            border-left: 4px solid #2c7a9e;
+            padding-left: 20px;
+            margin-bottom: 32px;
+            font-weight: 400;
+        }
+
+        .post p {
+            margin: 0 0 1.4em;
+            font-size: 1rem;
+            color: #1f2c39;
+        }
+
+        .post a {
+            color: #1f6b8c;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(31,107,140,0.25);
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        .post a:hover, .post a:focus {
+            color: #0d4b69;
+            border-bottom-color: #0d4b69;
+        }
+
+        .post .pull-quote {
+            background: #f2f6fa;
+            border-radius: 20px;
+            padding: 28px 28px 28px 44px;
+            margin: 32px 0 36px;
+            font-style: normal;
+            border-left: 10px solid #2c7a9e;
+            color: #1e3a4b;
+            font-size: 1.02rem;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .post .pull-quote::before {
+            content: "✎ 记一笔 · ";
+            font-weight: 500;
+            color: #2c7a9e;
+        }
+
+        .highlight-box {
+            background: #eef3f8;
+            border-radius: 24px;
+            padding: 24px 28px;
+            margin: 28px 0 32px;
+            border: 1px solid #d9e2ec;
+        }
+
+        .highlight-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-box strong {
+            color: #1f5b79;
+        }
+
+        .faq-mini {
+            margin-top: 40px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 24px;
+        }
+
+        .faq-mini h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin: 0 0 6px;
+            color: #1f3a4b;
+        }
+
+        .faq-mini p {
+            margin: 0 0 18px;
+            color: #395a6d;
+        }
+
+        .faq-mini p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ---------- 底部 ---------- */
+        .signature {
+            text-align: center;
+            padding: 32px 0 48px;
+            font-size: 0.9rem;
+            color: #6b7f8f;
+            border-top: 1px solid #e0e7ed;
+            margin-top: 20px;
+        }
+
+        .signature a {
+            color: #1f6b8c;
+            text-decoration: none;
+            border-bottom: 1px dotted #a0baca;
+        }
+
+        .signature a:hover {
+            border-bottom-style: solid;
+            color: #0d4b69;
+        }
+
+        /* ---------- 响应式 ---------- */
+        @media (max-width: 600px) {
+            .hero { padding: 60px 16px 48px; margin: 0 -20px 40px; }
+            .hero h1 { font-size: 1.7rem; }
+            .post { padding: 28px 16px 36px; }
+            .post .pull-quote { padding: 20px 16px 20px 28px; }
+            .highlight-box { padding: 18px 16px; }
+        }
+
+        @media (max-width: 420px) {
+            .hero h1 { font-size: 1.5rem; }
+            .hero .subhead { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- 深色头图 -->
+    <header class="hero">
+        <h1>再次回到 mk体育</h1>
+        <div class="subhead">
+            收藏夹里的老朋友，值得持续翻看
+            <br>
+            <span>简 · 常回 · 不迷路</span>
+        </div>
+    </header>
+
+    <!-- 正文：博客式多段 -->
+    <main class="post">
+
+        <div class="intro">
+            有时候我们路过一个不错的站点，顺手点了个收藏，然后就忘了。直到某天翻标签页，才重新想起——原来这里有一个一直保持更新的角落。
+        </div>
+
+        <p>几年前第一次打开 <a href="https://url-mksport.com.cn">mk体育</a> 的时候，印象最深的是界面干净，没有乱七八糟的弹窗。后来陆续又去过几次，发现内容一直有人在维护，不是那种放几个月就不管的站点。慢慢地，就习惯把它放在浏览器书签栏的第二级菜单里，不占位置，但偶尔点开总能读到点新东西。</p>
+
+        <p>对于常逛网站的人来说，最怕的不是信息多，而是信息停更。一个地方一旦停止更新，收藏夹里的链接就变成了数字化石。但 <a href="https://url-mksport.com.cn">mk体育</a> 属于那种你隔两周再过去，依然能看到新痕迹的站点。它不追求一天刷十条新闻，但每一条都让人觉得是用心筛过的。</p>
+
+        <div class="pull-quote">
+            收藏一个地方不难，难的是每次点开都觉得「嗯，没白来」。mk体育 对我来说就是这样的存在。
+        </div>
+
+        <p>后来我也学聪明了，不再一股脑塞几百个书签。真正值得持续关注的，其实没几个。而 <a href="https://url-mksport.com.cn">mk体育</a> 就是我一直留在「常看」分类下的站点之一。它不吵，不赶时髦，有种老派博客的沉稳气质。如果你也想找一个能反复回访、不担心关停或变味的地方，也许可以试试把它放进收藏夹的顺手位置。</p>
+
+        <div class="highlight-box">
+            <p><strong>一个小习惯：</strong> 每次看完 <a href="https://url-mksport.com.cn">mk体育</a> 上的内容，如果觉得有意思，我会随手把浏览器标签页固定一下，或者丢到阅读列表里。下次再开电脑，第一眼就能看见。这种「被动提醒」的方式，反而帮我留下了很多本来会滑走的东西。</p>
+        </div>
+
+        <p>当然，每个人有自己收藏和回访的方式。有人喜欢用笔记软件，有人靠浏览器同步，也有人只是单纯记住网址。不管哪种方式，前提是那个地方值得反复打开。对我来说，<a href="https://url-mksport.com.cn">mk体育</a> 就是这样的站点——不喧哗，不套路，安安静静地待在那里，等着你再次点开。</p>
+
+        <!-- FAQ 摘要 / 小提示 -->
+        <div class="faq-mini">
+            <h3>📌 关于收藏与回访</h3>
+            <p>问：收藏夹太乱，怎么保证不把好站点淹没？<br>
+            答：可以单独建一个「常去」文件夹，只放那些你愿意持续关注的网站。<a href="https://url-mksport.com.cn">mk体育</a> 就挺适合放进去，不占地方，但常看常新。</p>
+            <p>问：如果很久没去，会不会错过什么？<br>
+            答：每隔一两周顺路点开一次就行，不用有负担。好的内容会等你，而 <a href="https://url-mksport.com.cn">mk体育</a> 的更新节奏刚好适合慢慢看。</p>
+        </div>
+
+    </main>
+
+    <!-- 底部 / 再次访问的提示 -->
+    <footer class="signature">
+        <p>珍藏的链接，值得反复打开。mk体育 就在那里。</p>
+        <p style="margin-top:16px; font-size:0.85rem; color:#8a9dad;">&mdash; 简单收藏 · 持续关注 &mdash;</p>
+    </footer>
+
+</div>
+
+</body>
+</html>
