@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>竞彩网 · 平稳的赛事信息页面</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f9fc;
+      color: #1e2d3d;
+      line-height: 1.6;
+      padding: 1.5rem 1rem 3rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page-wrapper {
+      max-width: 880px;
+      width: 100%;
+    }
+
+    /* 开头柔和短句 —— 像一段安静的引言 */
+    .opening {
+      margin: 2rem 0 1.8rem;
+      padding: 0.5rem 0;
+      border-bottom: 2px solid #b3d9d2;
+      display: inline-block;
+    }
+
+    .opening p {
+      font-size: 1.5rem;
+      font-weight: 320;
+      letter-spacing: 0.02em;
+      color: #1b5d5c;
+      background: #e0f0ec;
+      display: inline;
+      padding: 0.1rem 1rem 0.1rem 0.8rem;
+      border-radius: 0 30px 30px 0;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+
+    /* 承上启下的段落 */
+    .bridging {
+      background: #ffffffdd;
+      backdrop-filter: blur(2px);
+      padding: 1.8rem 1.6rem;
+      border-radius: 28px 8px 28px 8px;
+      box-shadow: 0 4px 12px rgba(27, 93, 92, 0.06);
+      margin: 1.8rem 0 2.2rem;
+      border-left: 6px solid #359a92;
+      transition: all 0.2s ease;
+    }
+
+    .bridging p {
+      font-size: 1.05rem;
+      color: #1f3a3e;
+      margin-bottom: 0.8rem;
+    }
+
+    .bridging p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .bridging a {
+      color: #1b7d74;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1.5px dotted #68b5ab;
+      transition: border 0.15s;
+    }
+
+    .bridging a:hover {
+      border-bottom: 1.5px solid #1b7d74;
+    }
+
+    /* 网格卡片 —— 特点列表 */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 2.8rem 0 2.2rem;
+    }
+
+    .feature-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.5rem 1.3rem 1.3rem;
+      box-shadow: 0 6px 14px rgba(10, 60, 55, 0.05);
+      border: 1px solid #daece8;
+      transition: transform 0.15s, box-shadow 0.25s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 22px rgba(27, 93, 92, 0.1);
+      border-color: #8fcbc2;
+    }
+
+    .feature-card h3 {
+      font-size: 1.2rem;
+      font-weight: 550;
+      color: #1b5d5c;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .feature-card h3::before {
+      content: "◈";
+      color: #359a92;
+      font-size: 1.2rem;
+      opacity: 0.7;
+    }
+
+    .feature-card p {
+      font-size: 0.95rem;
+      color: #2c474b;
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    .feature-card .tag {
+      margin-top: 0.7rem;
+      display: inline-block;
+      background: #e1f1ed;
+      color: #195d58;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      align-self: flex-start;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    /* 温和的提示 / 场景融合 */
+    .gentle-note {
+      background: #d9ede8;
+      padding: 1.5rem 1.8rem;
+      border-radius: 40px 8px 40px 8px;
+      margin: 1.8rem 0 2.2rem;
+      color: #153c3b;
+    }
+
+    .gentle-note p {
+      margin-bottom: 0.6rem;
+    }
+
+    .gentle-note p:last-child {
+      margin-bottom: 0;
+    }
+
+    .gentle-note strong {
+      color: #0d524b;
+      font-weight: 600;
+    }
+
+    /* FAQ 摘要 —— 简短、口语化 */
+    .faq-mini {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 1.6rem 1.8rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      border: 1px solid #c8e0da;
+      margin: 2.5rem 0 2rem;
+    }
+
+    .faq-item {
+      border-left: 4px solid #359a92;
+      padding-left: 1rem;
+    }
+
+    .faq-item .q {
+      font-weight: 600;
+      color: #0a4642;
+      margin-bottom: 0.2rem;
+      font-size: 1rem;
+    }
+
+    .faq-item .a {
+      color: #2f5450;
+      font-size: 0.95rem;
+    }
+
+    .closing {
+      text-align: left;
+      margin: 2.5rem 0 0.8rem;
+      padding-top: 0.8rem;
+      border-top: 2px solid #b5d7d0;
+      font-size: 0.95rem;
+      color: #2b5b56;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .closing span {
+      background: #e3f2ed;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+    }
+
+    a {
+      color: #1b7d74;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* 响应式微调 */
+    @media (max-width: 500px) {
+      body {
+        padding: 1rem 0.8rem 2rem;
+      }
+      .opening p {
+        font-size: 1.2rem;
+        padding: 0.1rem 0.6rem 0.1rem 0.6rem;
+      }
+      .bridging {
+        padding: 1.2rem 1rem;
+      }
+      .feature-grid {
+        gap: 1rem;
+      }
+      .feature-card {
+        padding: 1.2rem 1rem;
+      }
+      .gentle-note {
+        padding: 1.2rem 1.2rem;
+      }
+      .faq-mini {
+        padding: 1.2rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .feature-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* 蓝绿色小点缀 */
+    .dot-decoration {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: #359a92;
+      border-radius: 50%;
+      margin: 0 0.4rem;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- 开场短句 -->
+  <div class="opening">
+    <p>如果说稳定是一扇门，那么这里就是尽量平整的门框。</p>
+  </div>
+
+  <!-- 承接段落：说明页面定位，自然出现竞彩网链接 -->
+  <div class="bridging">
+    <p>
+      许多朋友在寻找赛事信息时，往往希望页面简洁、访问直接。我们整理了这个说明页，以帮助了解
+      <a href="https://cnweb-sportsbet.com">竞彩网</a> 的基本构成与内容分布。
+      这里没有复杂的跳转，只有关于信息入口与页面功能的平实描述。
+    </p>
+    <p>
+      下面的特点列表归纳了站点中常见的几个模块，它们不一定同时出现，但大致反映了整体的浏览节奏。
+      从赛事列表到数据呈现，每一步都尽量保持清晰。
+    </p>
+  </div>
+
+  <!-- 特点卡片网格（故事叙述中的“特点列举”） -->
+  <div class="feature-grid">
+    <div class="feature-card">
+      <h3>首页总览</h3>
+      <p>通常集合了当日焦点赛事、近期动态和快速筛选入口。板块之间留有间距，避免拥挤。</p>
+      <span class="tag">导航起点</span>
+    </div>
+    <div class="feature-card">
+      <h3>赛事列表</h3>
+      <p>按时间或联赛排列，每场附带基础信息（主客队、时间、阶段）。点击后可进入该场详细页。</p>
+      <span class="tag">结构统一</span>
+    </div>
+    <div class="feature-card">
+      <h3>数据面板</h3>
+      <p>展示近期战绩、交锋记录等参考项，以表格或简易图形呈现，便于快速扫视。</p>
+      <span class="tag">数字辅助</span>
+    </div>
+    <div class="feature-card">
+      <h3>页面引导</h3>
+      <p>侧边或顶部提供分类标签，帮助在不同模块间移动。说明文字保持在必要位置。</p>
+      <span class="tag">减少迷路</span>
+    </div>
+    <div class="feature-card">
+      <h3>搜索与过滤</h3>
+      <p>支持按球队、日期或联赛名称筛选，结果实时更新。适合有明确目标的浏览者。</p>
+      <span class="tag">精准定位</span>
+    </div>
+    <div class="feature-card">
+      <h3>移动适配</h3>
+      <p>页面针对手机屏幕做响应式调整，按钮和链接保持合理触控区域，不必频繁缩放。</p>
+      <span class="tag">随手可用</span>
+    </div>
+  </div>
+
+  <!-- 温和的场景说明 + 嵌入第二处链接（保持自然） -->
+  <div class="gentle-note">
+    <p><strong>日常使用场景</strong> 比如在周末打开浏览器，先扫一眼联赛时间表，再点进某场比赛看近况。
+    整个过程最好不卡顿、不绕路。这也是 <a href="https://cnweb-sportsbet.com">竞彩网</a> 在页面组织上倾向于保留的体验 —— 把信息摊开，但保持整洁。</p>
+    <p>如果之前没有用过，可以从首页的日期栏开始，慢慢熟悉结构。不必着急，页面会一直按同样的方式回应。</p>
+  </div>
+
+  <!-- FAQ 摘要（故事化揉入） -->
+  <div class="faq-mini">
+    <div class="faq-item">
+      <div class="q">▸ 页面会不会经常变来变去？</div>
+      <div class="a">版式相对固定，主要调整会在赛季更替时进行。日常使用时板块位置基本一致。</div>
+    </div>
+    <div class="faq-item">
+      <div class="q">▸ 需要注册才能看信息吗？</div>
+      <div class="a">基础浏览和赛事列表通常无需登录。部分个人化功能（如收藏）可能需要简单注册。</div>
+    </div>
+    <div class="faq-item">
+      <div class="q">▸ 数据一般多久更新？</div>
+      <div class="a">比分和进行中的事件实时性高，赛前数据（阵容、伤停等）会在临近开赛时刷新。</div>
+    </div>
+  </div>
+
+  <!-- 温和结尾 -->
+  <div class="closing">
+    <span>页面说明 · 基于常规结构整理</span>
+    <span style="font-size:0.85rem; opacity:0.7;">阅读时间约 3 分钟</span>
+  </div>
+
+  <!-- 页面最底部再放一次链接（非强制，但用来保证可访问） -->
+  <div style="text-align: left; margin-top: 1.5rem; font-size: 0.85rem; color: #5a7976; border-top: 1px solid #c6ded7; padding-top: 1.2rem;">
+    <span>信息来源参考：<a href="https://cnweb-sportsbet.com" style="border-bottom:1px dotted #68b5ab;">竞彩网</a></span>
+    <span class="dot-decoration"></span>
+    <span>内容仅作介绍，不构成任何建议</span>
+  </div>
+
+</div>
+</body>
+</html>
